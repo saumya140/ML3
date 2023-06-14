@@ -7,7 +7,8 @@ import pandas as pd
 from streamlit_option_menu import option_menu
 
 # Replace 'path_to_dataset' with the actual path to your dataset file
-data = pd.read_csv(r'C:\Users\User\Downloads\archive\Placement_Data_Full_Class.csv')
+data = pd.read_csv('data/Placement_Data_Full_Class.csv')
+
 
 # loading the saved model
 loaded_model = pickle.load(open('C:/Users/User/Machine Learning subject/MLProject/SVM WEB/trained_model.sav', 'rb'))

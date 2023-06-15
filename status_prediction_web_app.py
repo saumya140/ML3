@@ -32,6 +32,7 @@ with st.sidebar:
                           
                           ['Status Prediction',
                            'Visual for Status by EmpTest',
+                           'Visuals',
                            'Visual for Status by Gender'],
                           icons=['activity','heart','person'],
                           default_index=0)
@@ -117,5 +118,57 @@ elif selected == "Visual for Status by Gender":
     plt.axis('equal')
     plt.title('Status by Gender')
     st.pyplot(plt)
+  
+elif selected == 'Visuals':
+    # page title
+    st.title('Data Visualization for Campus Placement Prediction')
+
+    # User input for variables and graph type
+    x_variable = st.selectbox('Select a variable for the x-axis:', ['gender', 'ssc_p', 'hsc_p', 'degree_p', 'etest_p', 'mba_p', 'workex', 'degree_t', 'specialisation'])
+    y_variable = st.selectbox('Select a variable for the y-axis:', ['gender', 'ssc_p', 'hsc_p', 'degree_p', 'etest_p', 'mba_p', 'workex', 'degree_t', 'specialisation'])
+    graph_type = st.selectbox('Select a graph type:', ['Bar Plot', 'Pie Chart', 'Box Plot', 'Scatter Plot', 'Stacked Bar Plot'])
+
+    if graph_type == 'Stacked Bar Plot':
+        plt.figure(figsize=(10, 6))
+        stacked_data = data.groupby([x_variable, y_variable]).size().unstack()
+        stacked_data.plot(kind='bar', stacked=True)
+        plt.xlabel(x_variable)
+        plt.ylabel('Count')
+        plt.title(f'{graph_type} of {y_variable} by {x_variable}')
+        st.pyplot(plt)
+
+    elif graph_type == 'Pie Chart':
+        plt.figure(figsize=(8, 6))
+        x_counts = data[x_variable].value_counts()
+        labels = x_counts.index.tolist()
+        colors = ['#FF7F0E', '#1F77B4']
+        plt.pie(x_counts, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+        plt.axis('equal')
+        plt.title(f'{graph_type} of {x_variable}')
+        st.pyplot(plt)
+
+    elif graph_type == 'Bar Plot':
+        plt.figure(figsize=(10, 6))
+        sns.barplot(data=data, x=x_variable, y=y_variable)
+        plt.xlabel(x_variable)
+        plt.ylabel(y_variable)
+        plt.title(f'{graph_type} of {y_variable} by {x_variable}')
+        st.pyplot(plt)
+
+    elif graph_type == 'Scatter Plot':
+        plt.figure(figsize=(10, 6))
+        sns.scatterplot(data=data, x=x_variable, y=y_variable)
+        plt.xlabel(x_variable)
+        plt.ylabel(y_variable)
+        plt.title(f'{graph_type} of {x_variable} vs {y_variable}')
+        st.pyplot(plt)
+
+    elif graph_type == 'Box Plot':
+        plt.figure(figsize=(10, 6))
+        sns.boxplot(data=data, x=x_variable, y=y_variable)
+        plt.xlabel(x_variable)
+        plt.ylabel(y_variable)
+        plt.title(f'{graph_type} of {y_variable} by {x_variable}')
+        st.pyplot(plt)
 
     

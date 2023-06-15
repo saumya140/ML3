@@ -11,7 +11,7 @@ data = pd.read_csv('Placement_Data_Full_Class.csv')
 
 
 # loading the saved model
-loaded_model = pickle.load(open('trained_model.sav', 'rb'))
+loaded_model = pickle.load(open('trained_model1.sav', 'rb'))
 
 # function for prediction
 def status_prediction(input_data):

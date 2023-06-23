@@ -15,7 +15,6 @@ loaded_model = pickle.load(open('trained_model1.sav', 'rb'))
 
 # function for prediction
 def status_prediction(input_data):
-    def status_prediction(input_data):
     input_data = [float(value) for value in input_data]  # Convert input values to float
     input_data_as_numpy_array = np.asarray(input_data)
     input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)

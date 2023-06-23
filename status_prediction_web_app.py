@@ -6,7 +6,7 @@ import seaborn as sns
 import pandas as pd
 from streamlit_option_menu import option_menu
 
-# Replace 'path_to_dataset' with the actual path to your dataset file
+
 data = pd.read_csv('Placement_Data_Full_Class.csv')
 
 
